@@ -15,6 +15,12 @@ public class UI {
 	//COR DO FUNDO	
 	public static final String ANSI_RESET = "\u001B[0m";
 	
+	
+	public static void limparTela() {
+		System.out.println("\033[H\033[2J");
+		System.out.flush();
+	}
+	
 	public static PosicaoXadrez lerPosicaoXadrez(Scanner sc) {
 		try {
 			String s = sc.nextLine();
