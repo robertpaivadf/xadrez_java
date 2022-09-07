@@ -14,6 +14,7 @@ public class UI {
 	public static final String ANSI_BLACK = "\u001B[33m";
 	//COR DO FUNDO	
 	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
 	
 	
 	public static void limparTela() {
@@ -38,16 +39,30 @@ public class UI {
 		for(int i=0;i<pecas.length; i++) {
 			System.out.print((8-i) + " ");
 			for(int j=0;j<pecas.length; j++) {
-				mostrarPeca(pecas[i][j]);
+				mostrarPeca(pecas[i][j], false);
 			}
 			System.out.println();
 		}
 		System.out.print("  a b c d e f g h");
 	}
 	
-	private static void mostrarPeca(PecaXadrez peca) {
+	public static void mostrarTabuleiro(PecaXadrez[][] pecas, boolean[][] movimentosPossiveis) {
+		for(int i=0;i<pecas.length; i++) {
+			System.out.print((8-i) + " ");
+			for(int j=0;j<pecas.length; j++) {
+				mostrarPeca(pecas[i][j], movimentosPossiveis[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.print("  a b c d e f g h");
+	}
+	
+	private static void mostrarPeca(PecaXadrez peca, boolean telaDeFundo) {
+		if(telaDeFundo) {
+			System.out.print(ANSI_BLUE_BACKGROUND);
+		}		
 		if(peca==null) {
-			System.out.print("-");
+			System.out.print("-" + ANSI_RESET);
 		}
 		else {
 			if(peca.getCor() == Cor.BRANCO) {
